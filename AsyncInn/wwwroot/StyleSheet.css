@@ -1,0 +1,17 @@
+﻿
+h1 {
+    padding: 5px 0;
+    font-size: 95px;
+    font-family: serif;
+    text-align: center;
+    letter-spacing: 5px;
+}
+
+body {
+    background-color: black;
+    color: white;
+}
+
+a {
+    color: white;
+}
