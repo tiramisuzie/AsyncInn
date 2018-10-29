@@ -3,14 +3,16 @@ using AsyncInn.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AsyncInn.Migrations
 {
     [DbContext(typeof(AsyncInnDbContext))]
-    partial class AsyncInnDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181029052112_roomAmenity")]
+    partial class roomAmenity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,8 +26,7 @@ namespace AsyncInn.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
-                        .IsRequired();
+                    b.Property<string>("Name");
 
                     b.HasKey("ID");
 
@@ -38,14 +39,11 @@ namespace AsyncInn.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Address")
-                        .IsRequired();
+                    b.Property<string>("Address");
 
-                    b.Property<string>("Name")
-                        .IsRequired();
+                    b.Property<string>("Name");
 
-                    b.Property<string>("Phone")
-                        .IsRequired();
+                    b.Property<string>("Phone");
 
                     b.HasKey("ID");
 
@@ -79,8 +77,7 @@ namespace AsyncInn.Migrations
 
                     b.Property<int>("Layout");
 
-                    b.Property<string>("Name")
-                        .IsRequired();
+                    b.Property<string>("Name");
 
                     b.HasKey("ID");
 
@@ -92,8 +89,6 @@ namespace AsyncInn.Migrations
                     b.Property<int>("RoomID");
 
                     b.Property<int>("AmenityID");
-
-                    b.Property<int>("AmenitiesID");
 
                     b.HasKey("RoomID", "AmenityID");
 
@@ -117,7 +112,7 @@ namespace AsyncInn.Migrations
 
             modelBuilder.Entity("AsyncInn.Models.RoomAmenity", b =>
                 {
-                    b.HasOne("AsyncInn.Models.Amenity")
+                    b.HasOne("AsyncInn.Models.Amenity", "Amenity")
                         .WithMany("RoomAmenities")
                         .HasForeignKey("AmenityID")
                         .OnDelete(DeleteBehavior.Cascade);
