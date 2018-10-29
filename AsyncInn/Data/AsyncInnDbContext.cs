@@ -9,6 +9,7 @@ namespace AsyncInn.Data
         public DbSet<Hotel> Hotels { get; set; }
         public DbSet<HotelRoom> HotelRooms { get; set; }
         public DbSet<Room> Rooms { get; set; }
+        public DbSet<Amenity> Amenity { get; set; }
 
         public AsyncInnDbContext(DbContextOptions<AsyncInnDbContext> options) : base(options)
         {
