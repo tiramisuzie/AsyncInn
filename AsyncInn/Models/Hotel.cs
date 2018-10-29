@@ -12,7 +12,7 @@ namespace AsyncInn.Models
         public string Address { get; set; }
 
         public string Phone { get; set; }
-        
-        //public ICollection<HotelRoom> HotelRooms { get; set; }
+
+        public ICollection<HotelRoom> HotelRooms { get; set; }
     }
 }
