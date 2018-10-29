@@ -3,14 +3,16 @@ using AsyncInn.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AsyncInn.Migrations
 {
     [DbContext(typeof(AsyncInnDbContext))]
-    partial class AsyncInnDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181029054046_seed")]
+    partial class seed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -72,15 +74,15 @@ namespace AsyncInn.Migrations
                 {
                     b.Property<int>("HotelID");
 
-                    b.Property<int>("RoomNumber");
+                    b.Property<int>("RoomID");
 
                     b.Property<bool>("PetFriendly");
 
                     b.Property<decimal>("Rate");
 
-                    b.Property<int>("RoomID");
+                    b.Property<int>("RoomNumber");
 
-                    b.HasKey("HotelID", "RoomNumber");
+                    b.HasKey("HotelID", "RoomID");
 
                     b.HasIndex("RoomID");
 
@@ -114,13 +116,15 @@ namespace AsyncInn.Migrations
 
             modelBuilder.Entity("AsyncInn.Models.RoomAmenity", b =>
                 {
-                    b.Property<int>("AmenitiesID");
-
                     b.Property<int>("RoomID");
 
-                    b.HasKey("AmenitiesID", "RoomID");
+                    b.Property<int>("AmenityID");
 
-                    b.HasIndex("RoomID");
+                    b.Property<int>("AmenitiesID");
+
+                    b.HasKey("RoomID", "AmenityID");
+
+                    b.HasIndex("AmenityID");
 
                     b.ToTable("RoomAmenity");
                 });
@@ -140,9 +144,9 @@ namespace AsyncInn.Migrations
 
             modelBuilder.Entity("AsyncInn.Models.RoomAmenity", b =>
                 {
-                    b.HasOne("AsyncInn.Models.Amenity", "Amenity")
+                    b.HasOne("AsyncInn.Models.Amenity")
                         .WithMany("RoomAmenities")
-                        .HasForeignKey("AmenitiesID")
+                        .HasForeignKey("AmenityID")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("AsyncInn.Models.Room", "Room")

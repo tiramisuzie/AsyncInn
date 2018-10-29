@@ -3,14 +3,16 @@ using AsyncInn.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AsyncInn.Migrations
 {
     [DbContext(typeof(AsyncInnDbContext))]
-    partial class AsyncInnDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181029052112_roomAmenity")]
+    partial class roomAmenity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,20 +26,11 @@ namespace AsyncInn.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
-                        .IsRequired();
+                    b.Property<string>("Name");
 
                     b.HasKey("ID");
 
                     b.ToTable("Amenity");
-
-                    b.HasData(
-                        new { ID = 1, Name = "Air Conditioning" },
-                        new { ID = 2, Name = "Office" },
-                        new { ID = 3, Name = "City View" },
-                        new { ID = 4, Name = "Internet" },
-                        new { ID = 5, Name = "Refrigerator" }
-                    );
                 });
 
             modelBuilder.Entity("AsyncInn.Models.Hotel", b =>
@@ -46,41 +39,30 @@ namespace AsyncInn.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Address")
-                        .IsRequired();
+                    b.Property<string>("Address");
 
-                    b.Property<string>("Name")
-                        .IsRequired();
+                    b.Property<string>("Name");
 
-                    b.Property<string>("Phone")
-                        .IsRequired();
+                    b.Property<string>("Phone");
 
                     b.HasKey("ID");
 
                     b.ToTable("Hotels");
-
-                    b.HasData(
-                        new { ID = 1, Address = "79 Carriage House Ln, Philipsburg, MT 59858", Name = "The Ranch at Rock Creek", Phone = "877-786-1545" },
-                        new { ID = 2, Address = "222 Beaverwood Rd, Saranac Lake, NY 12983", Name = "The Point in Saranac Lake", Phone = "518-891-5674" },
-                        new { ID = 3, Address = "66 Brush Creek Ranch Road, Saratoga, WY 82331", Name = "Brush Creek Ranch", Phone = "307-327-5284" },
-                        new { ID = 4, Address = "452 Royalton Turnpike, Barnard, VT 05031", Name = "Twin Farms", Phone = "802-234-9999" },
-                        new { ID = 5, Address = "525 Boynton Canyon Rd, Sedona, AZ 86336", Name = "Mii amo", Phone = "844-244-9487" }
-                    );
                 });
 
             modelBuilder.Entity("AsyncInn.Models.HotelRoom", b =>
                 {
                     b.Property<int>("HotelID");
 
-                    b.Property<int>("RoomNumber");
+                    b.Property<int>("RoomID");
 
                     b.Property<bool>("PetFriendly");
 
                     b.Property<decimal>("Rate");
 
-                    b.Property<int>("RoomID");
+                    b.Property<int>("RoomNumber");
 
-                    b.HasKey("HotelID", "RoomNumber");
+                    b.HasKey("HotelID", "RoomID");
 
                     b.HasIndex("RoomID");
 
@@ -95,32 +77,22 @@ namespace AsyncInn.Migrations
 
                     b.Property<int>("Layout");
 
-                    b.Property<string>("Name")
-                        .IsRequired();
+                    b.Property<string>("Name");
 
                     b.HasKey("ID");
 
                     b.ToTable("Rooms");
-
-                    b.HasData(
-                        new { ID = 1, Layout = 1, Name = "Single" },
-                        new { ID = 2, Layout = 2, Name = "Double" },
-                        new { ID = 3, Layout = 1, Name = "King" },
-                        new { ID = 4, Layout = 1, Name = "Twin" },
-                        new { ID = 5, Layout = 0, Name = "Studio" },
-                        new { ID = 6, Layout = 1, Name = "Queen" }
-                    );
                 });
 
             modelBuilder.Entity("AsyncInn.Models.RoomAmenity", b =>
                 {
-                    b.Property<int>("AmenitiesID");
-
                     b.Property<int>("RoomID");
 
-                    b.HasKey("AmenitiesID", "RoomID");
+                    b.Property<int>("AmenityID");
 
-                    b.HasIndex("RoomID");
+                    b.HasKey("RoomID", "AmenityID");
+
+                    b.HasIndex("AmenityID");
 
                     b.ToTable("RoomAmenity");
                 });
@@ -142,7 +114,7 @@ namespace AsyncInn.Migrations
                 {
                     b.HasOne("AsyncInn.Models.Amenity", "Amenity")
                         .WithMany("RoomAmenities")
-                        .HasForeignKey("AmenitiesID")
+                        .HasForeignKey("AmenityID")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("AsyncInn.Models.Room", "Room")
