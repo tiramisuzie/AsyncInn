@@ -7,22 +7,23 @@
 <h2>Index</h2>
 
 <p>
+    <a asp-controller="Home" asp-action="Index">Home</a>
     <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.RoomNumber)
+                @Html.DisplayNameFor(model => model.Hotel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Rate)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PetFriendly)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Hotel)
             </th>
             <th></th>
         </tr>
@@ -31,21 +32,19 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.RoomNumber)
+                @Html.DisplayFor(modelItem => item.Hotel.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Room.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Rate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PetFriendly)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Hotel.ID)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @if (item.PetFriendly)
+                {<text>Yes</text>}
+                else
+                { <text>No</text>}
             </td>
         </tr>
 }
