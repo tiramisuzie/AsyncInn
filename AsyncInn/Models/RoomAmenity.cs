@@ -5,8 +5,6 @@ namespace AsyncInn.Models
 {
     public class RoomAmenity
     {
-        public int AmenityID { get; set; }
-
         [ForeignKey("Room")]
         [Display(Name = "Room")]
         public int RoomID { get; set; }

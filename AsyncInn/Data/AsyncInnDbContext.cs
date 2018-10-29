@@ -21,11 +21,11 @@ namespace AsyncInn.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<HotelRoom>().HasKey(
-               hr => new { hr.HotelID, hr.RoomID }
-               );
+                hr => new { hr.HotelID, hr.RoomNumber }
+                );
 
             modelBuilder.Entity<RoomAmenity>().HasKey(
-                rm => new { rm.RoomID, rm.AmenityID }
+                ra => new { ra.AmenitiesID, ra.RoomID }
                 );
 
             modelBuilder.Entity<Hotel>().HasData(
