@@ -144,5 +144,22 @@ namespace AsyncInn.Controllers
         {
             return _hotel.GetHotel(id) != null;
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Index(string searchterm)
+        {
+            string searchWords = searchterm;
+            var allHotels = await _hotel.GetHotels();
+            if (searchterm != null && searchterm.Trim() != "")
+            {
+                IEnumerable<Hotel> foundHotel = allHotels.Where(h => h.Name.ToLower().Contains(searchWords.ToLower()));
+                return View(foundHotel);
+            }
+            else
+            {
+                return View(allHotels);
+            }
+
+        }
     }
 }
