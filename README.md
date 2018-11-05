@@ -25,6 +25,9 @@ Following the design, Create a controller for each of the pages listed above. Yo
 Home Page
 Add some html and styling to your home page. Link the index action of each of the other controllers within the Home page. Throughout the week, we will slowly evolve this page to be more of a “dashboard” feel, but start the design now to start the process.
 
+## Explore Depoloyed Website
+https://asyncinnn.azurewebsites.net/
+
 ## Load Application
 in terminal: git clone open in visual studio run project without debugging
 
