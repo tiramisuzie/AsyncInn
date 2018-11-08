@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link href="~/StyleSheet.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Welcome to Async Inn</h1>
+
+    <div>
+        <a asp-controller="Home" asp-action="Index">HOME</a>
+        <a asp-controller="Hotel" asp-action="Index">HOTELS</a>
+        <a asp-controller="Amenity" asp-action="Index">AMENITIES</a>
+        <a asp-controller="Room" asp-action="Index">ROOMS</a>
+        <a asp-controller="HotelRoom" asp-action="Index">HOTEL ROOMS</a>
+        <a asp-controller="RoomAmenity" asp-action="Index">ROOM AMENITIES</a>
+    </div>
+
+    <main>
+        @RenderBody()
+        @RenderSection("scripts", required: false)
+    </main>
+</body>
+</html>
