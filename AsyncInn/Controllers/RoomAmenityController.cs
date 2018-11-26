@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace AsyncInn.Controllers
 {
-    public class RoomAmenitiesController : Controller
+    public class RoomAmenityController : Controller
     {
         private readonly AsyncInnDbContext _context;
 
-        public RoomAmenitiesController(AsyncInnDbContext context)
+        public RoomAmenityController(AsyncInnDbContext context)
         {
             _context = context;
         }

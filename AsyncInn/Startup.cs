@@ -26,7 +26,7 @@ namespace AsyncInn
         {
             services.AddMvc();
             services.AddDbContext<AsyncInnDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("Production")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddTransient<IAmenity, AmenityService>();
             services.AddTransient<IHotel, HotelService>();
